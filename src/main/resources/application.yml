@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/nbp_service
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+my:
+  adress: http://api.nbp.pl/api/exchangerates/rates/
