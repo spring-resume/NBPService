@@ -19,7 +19,7 @@ public class NbpService {
             String code,
             String startDate,
             String enDate) {
-        return nbpRepository.save(nbpClient.getQuestion(table, code, startDate,enDate));
+        return nbpRepository.save(nbpClient.getResult(table, code, startDate,enDate));
     }
 
 

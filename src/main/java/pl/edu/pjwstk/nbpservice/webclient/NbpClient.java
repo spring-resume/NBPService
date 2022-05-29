@@ -20,7 +20,7 @@ public class NbpClient {
         this.url = url;
     }
 
-    public Result getQuestion(String table, String code, String startDate, String endDate) {
+    public Result getResult(String table, String code, String startDate, String endDate) {
         String path = createPath(table,code,startDate,endDate);
         ResultDto root = restTemplate.getForObject(path, ResultDto.class);
 
@@ -28,7 +28,7 @@ public class NbpClient {
                 .currency(Objects.requireNonNull(root).getCurrency())
                 .startDate(LocalDate.parse(startDate))
                 .endDate(LocalDate.parse(endDate))
-                .rate(getRates(root))
+                .rate(getRate(root))
                 .executeQuestion(LocalDateTime.now())
                 .build();
     }
@@ -36,7 +36,7 @@ public class NbpClient {
     private String createPath(String... var) {
         return url + String.join("/", var) + "?format=json";
     }
-    private double getRates(ResultDto question) {
+    private double getRate(ResultDto question) {
         return question.getRates().stream()
                 .mapToDouble(RateDto::getMid)
                 .average()
